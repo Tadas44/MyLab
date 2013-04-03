@@ -99,8 +99,13 @@ public class MainActivity extends BaseActivity {
 	 * @param v
 	 */
 	public void onClickClose(View v) {
-		//Finish Main Activity
+		// Finish Main Activity
 		finish();
+	}
+
+	private void updateUi() {
+		TextView tv = (TextView) findViewById(R.id.textView_select_info);
+		tv.setText("Launch Select Activity - SelectedId:" + selectedId);
 	}
 
 	/**
@@ -120,8 +125,7 @@ public class MainActivity extends BaseActivity {
 				selectedId = intent.getIntExtra("id", 0);
 
 				// Set Results to TextView
-				TextView tv = (TextView) findViewById(R.id.textView_select_info);
-				tv.setText("Launch Select Activity - SelectedId:" + selectedId);
+				updateUi();
 
 				break;
 			case RESULT_CANCELED:
