@@ -1,23 +1,21 @@
-package lt.appcamp.lab.mylab1;
+package lt.appcamp.lab.mylab2;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 /**
- * Lab 1 - Activity Lifecycle
  * 
  * @author Tadas Valaitis
- * 
- * @see http://developer.android.com/training/basics/activity-lifecycle/index.html
- * @see http://developer.android.com/guide/components/activities.html
- * @see http://developer.android.com/reference/android/app/Activity.html
- * 
- * 
+ *
  */
-public class MainActivity extends Activity {
+public abstract class BaseActivity extends Activity {
 
-	protected static final String TAG = "MainActivity";
+	/**
+	 * get TAG for logging
+	 */
+	abstract String tag();
 
 	/**
 	 * Called when the activity is first created. This is where you should do
@@ -27,9 +25,8 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		Log.d(tag(), "onCreate(Bundle savedInstanceState)");
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		Log.d(TAG, "onCreate(Bundle savedInstanceState)");
 	}
 
 	/**
@@ -38,7 +35,7 @@ public class MainActivity extends Activity {
 	 */
 	@Override
 	protected void onRestart() {
-		Log.d(TAG, "onRestart()");
+		Log.d(tag(), "onRestart()");
 		super.onRestart();
 
 	}
@@ -49,7 +46,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
-		Log.d(TAG, "onStart()");
+		Log.d(tag(), "onStart()");
 		super.onStart();
 	}
 
@@ -61,7 +58,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		Log.d(TAG, "onRestoreInstanceState(Bundle savedInstanceState)");
+		Log.d(tag(), "onRestoreInstanceState(Bundle savedInstanceState)");
 		super.onRestoreInstanceState(savedInstanceState);
 	}
 
@@ -70,7 +67,7 @@ public class MainActivity extends Activity {
 	 */
 	@Override
 	protected void onResume() {
-		Log.d(TAG, "onResume()");
+		Log.d(tag(), "onResume()");
 		super.onResume();
 
 	}
@@ -82,7 +79,7 @@ public class MainActivity extends Activity {
 	 */
 	@Override
 	protected void onPause() {
-		Log.d(TAG, "onPause()");
+		Log.d(tag(), "onPause()");
 		super.onPause();
 
 	}
@@ -95,7 +92,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
-		Log.d(TAG, "onStop()");
+		Log.d(tag(), "onStop()");
 		super.onStop();
 	}
 
@@ -108,7 +105,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		// TODO Auto-generated method stub
-		Log.d(TAG, "onSaveInstanceState(Bundle outState)");
+		Log.d(tag(), "onSaveInstanceState(Bundle outState)");
 		super.onSaveInstanceState(outState);
 	}
 
@@ -119,10 +116,19 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
-		Log.d(TAG, "onDestroy()");
+		Log.d(tag(), "onDestroy()");
 		super.onDestroy();
 	}
 
 	/********** ACTIVITY IS DESTROYED *******/
 
+	/**** OTHER IMPORTANT CALLBACKS **/
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		Log.d(tag(), "onActivityResult(int requestCode, int resultCode, Intent data)");
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+	
 }

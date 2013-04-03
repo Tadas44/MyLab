@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="lt.appcamp.lab.mylab2"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="lt.appcamp.lab.mylab2.MainActivity"
+            android:label="@string/app_name" >
+            <!-- Filters with "android.intent.action.MAIN" and "android.intent.category.LAUNCHER"  mark activities that begin new tasks and that are represented on the launcher screen -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="lt.appcamp.lab.mylab2.DetailsActivity"
+            android:label="@string/app_name_details" >
+
+            <!-- If you want to have multiple acces points of application -->
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name="lt.appcamp.lab.mylab2.SelectActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="lt.appcamp.lab.mylab2.IntentFilterActivity"
+            android:label="@string/app_name" >
+            <!-- Intent Filter with Custom Action  -->
+            <intent-filter>
+                <action android:name="lt.appcamp.lab.doesntmatter.LETS_DO_SOMETHING" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
