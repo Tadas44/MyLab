@@ -28,7 +28,7 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
     protected static final String KEY_COUNTRY_TITLE = "title";
     protected static final String KEY_FLAG = "flag";
     
-    /** Other columns for Countries table **/
+    /** Other columns for People table **/
     protected static final String KEY_NAME = "name";
     protected static final String KEY_DESCRIPTION = "description";
     protected static final String KEY_COUNTRY_ID = "country_id";

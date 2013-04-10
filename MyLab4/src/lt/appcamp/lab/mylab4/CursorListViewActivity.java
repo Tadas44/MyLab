@@ -63,6 +63,8 @@ public class CursorListViewActivity extends Activity {
                 startActivity(i);
             }
         });
+		
+		
 	}
 	
 	
@@ -75,12 +77,15 @@ public class CursorListViewActivity extends Activity {
 
 		@Override
 		public void bindView(View view, Context context, Cursor cursor) {
+			
 			// find TextView
 			TextView textview = (TextView) view.findViewById(R.id.CountryTitle);
 			TextView countView = (TextView) view.findViewById(R.id.CountryPeopleCount);
 			
 			// get title from cursor
-			String title = cursor.getString(cursor.getColumnIndex("title"));
+			String title = cursor.getString(cursor.getColumnIndex(MyDatabase.KEY_COUNTRY_TITLE));
+			cursor.getColumnIndex(MyDatabase.KEY_COUNTRY_TITLE);
+			
 			
 			//get Count
 			String count = cursor.getString(cursor.getColumnIndex(BaseColumns._COUNT));

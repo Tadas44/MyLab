@@ -44,6 +44,7 @@ public class PeopleActivity extends Activity {
         // get Cursor
         Cursor c = cr.query(uri, null, null, null, null);
 
+        
         if (c != null) {
             c.moveToFirst();
             String name = c.getString(c.getColumnIndex(MyDataBaseHelper.KEY_NAME));
