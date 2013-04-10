@@ -12,6 +12,7 @@ import android.widget.TextView;
  * @author Tadas Valaitis
  * 
  * @see http://developer.android.com/guide/topics/resources/runtime-changes.html
+ * @see http://developer.android.com/training/basics/activity-lifecycle/recreating.html
  */
 public class MainActivity extends BaseActivity {
 

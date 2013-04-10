@@ -1,0 +1,20 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/CountryFlag"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_margin="5dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/CountryTitle"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CountryFlag"
+        android:gravity="center_horizontal" />
+
+</RelativeLayout>

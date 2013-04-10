@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyLab5</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_vertical_linear_layout">Vertical LinearLayout</string>
+    <string name="button_horizontal_linear_layout">Horizontal LinearLayout</string>
+    <string name="button_relative_layout">RelativeLayout</string>
+    <string name="button_text_view">TextView</string>
+    <string name="button_edit_text">EditText</string>
+    <string name="button_buttons">Buttons</string>
+    <string name="button_input_controls">Input Controls</string>
+    <string name="button_array_list_view">Array ListView</string>
+    <string name="button_cursor_list_view">Cursor ListView</string>
+    <string name="button_array_grid_view">Array GridView</string>
+    <string name="button_cursor_grid_view">Cursor GridView</string>
+
+</resources>
