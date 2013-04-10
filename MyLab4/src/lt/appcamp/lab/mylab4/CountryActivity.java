@@ -1,4 +1,3 @@
-
 package lt.appcamp.lab.mylab4;
 
 import android.app.Activity;
@@ -21,96 +20,85 @@ import android.widget.TextView;
 
 public class CountryActivity extends Activity {
 
-    private long countryId;
+	private long countryId;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_country);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_country);
 
-        // get country id from Intent
-        countryId = getIntent().getLongExtra("id", 0);
+		// get country id from Intent
+		countryId = getIntent().getLongExtra("id", 0);
 
-        // setup search
-        setupSearch();
+		// get Cursor From ContentResolver
+		ContentResolver cr = getContentResolver();
 
-        // get Cursor From ContentResolver
-        ContentResolver cr = getContentResolver();
+		// Buil Uri
+		Uri uri = MyProvider.CONTENT_URI_PEOPLE.buildUpon()
+				.appendPath("country").appendPath(String.valueOf(countryId))
+				.build();
 
-        // Buil Uri
-        Uri uri = MyProvider.CONTENT_URI_PEOPLE.buildUpon().appendPath("country")
-                .appendPath(String.valueOf(countryId)).build();
+		// get Cursor From Uri content://lt.appcamp.lab.mylab4/people/country/id
+		Cursor cursor = cr.query(uri, null, null, null, null);
 
-        // get Cursor From Uri content://lt.appcamp.lab.mylab4/people/country/id
-        Cursor cursor = cr.query(uri, null, null, null, null);
+		// Cursor Adapter
+		CountryCursorAdapter adapter = new CountryCursorAdapter(
+				CountryActivity.this, cursor, false);
 
-        // Cursor Adapter
-        CountryCursorAdapter adapter = new CountryCursorAdapter(CountryActivity.this, cursor, false);
+		// get List View
+		ListView list = (ListView) findViewById(android.R.id.list);
 
-        // get List View
-        ListView list = (ListView)findViewById(android.R.id.list);
+		// Set Adapter
+		list.setAdapter(adapter);
 
-        // Set Adapter
-        list.setAdapter(adapter);
-        
-        //set Click listener
-        list.setOnItemClickListener(new OnItemClickListener() {
+		// set Click listener
+		list.setOnItemClickListener(new OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View view, int pos, long id) {
-              //StartCountryActivity
-                Intent i = new Intent(CountryActivity.this,PeopleActivity.class);
-                i.putExtra("id",id );
-                startActivity(i);
-                
-            }
-        });
-    }
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int pos,
+					long id) {
+				// StartCountryActivity
+				Intent i = new Intent(CountryActivity.this,
+						PeopleActivity.class);
+				i.putExtra("id", id);
+				startActivity(i);
 
-    /**
-     * Content Provider with Search support needed
-     */
-    private void setupSearch() {
+			}
+		});
+	}
 
-        // Use the Search Manager to find the SearchableInfo related to this
-        // Activity.
-        SearchManager searchManager = (SearchManager)getSystemService(Context.SEARCH_SERVICE);
-        SearchableInfo searchableInfo = searchManager.getSearchableInfo(getComponentName());
+	public class CountryCursorAdapter extends CursorAdapter {
 
-        // Bind the Activity's SearchableInfo to the Search View
-        SearchView searchView = (SearchView)findViewById(R.id.searchView);
-        searchView.setSearchableInfo(searchableInfo);
-    }
+		public CountryCursorAdapter(Context context, Cursor c,
+				boolean autoRequery) {
+			super(context, c, autoRequery);
+			// TODO Auto-generated constructor stub
+		}
 
-    public class CountryCursorAdapter extends CursorAdapter {
+		@Override
+		public void bindView(View view, Context context, Cursor cursor) {
+			// TODO Auto-generated method stub
 
-        public CountryCursorAdapter(Context context, Cursor c, boolean autoRequery) {
-            super(context, c, autoRequery);
-            // TODO Auto-generated constructor stub
-        }
+			// get View
+			TextView nameView = (TextView) view.findViewById(R.id.PeopleName);
 
-        @Override
-        public void bindView(View view, Context context, Cursor cursor) {
-            // TODO Auto-generated method stub
+			// get name
+			String name = cursor.getString(cursor
+					.getColumnIndex(MyDataBaseHelper.KEY_NAME));
 
-            // get View
-            TextView nameView = (TextView)view.findViewById(R.id.PeopleName);
+			// set Name
+			nameView.setText(name);
 
-            // get name
-            String name = cursor.getString(cursor.getColumnIndex(MyDataBaseHelper.KEY_NAME));
+		}
 
-            // set Name
-            nameView.setText(name);
+		@Override
+		public View newView(Context context, Cursor cursor, ViewGroup vg) {
+			// TODO Auto-generated method stub
+			return View.inflate(context,
+					R.layout.view_country_cursor_list_item, null);
+		}
 
-        }
-
-        @Override
-        public View newView(Context context, Cursor cursor, ViewGroup vg) {
-            // TODO Auto-generated method stub
-            return View.inflate(context, R.layout.view_country_cursor_list_item, null);
-        }
-
-    }
+	}
 
 }

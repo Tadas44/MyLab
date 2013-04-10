@@ -17,7 +17,7 @@ public class PeopleActivity extends Activity {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_search_result);
+        setContentView(R.layout.activity_people);
 
         // get Name
         TextView nameView = (TextView)findViewById(R.id.PeopleName);
