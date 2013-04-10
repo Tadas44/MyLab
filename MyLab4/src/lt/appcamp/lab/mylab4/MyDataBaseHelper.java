@@ -2,15 +2,19 @@
 package lt.appcamp.lab.mylab4;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
 
+
 /**
- 
+ * MyDatabaseHelper
+ * 
+ * @author Tadas Valaitis
+ * 
  * @see http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html
+ *
  */
 public class MyDataBaseHelper extends SQLiteOpenHelper {
     /** database settings */
@@ -28,7 +32,7 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
     protected static final String KEY_COUNTRY_TITLE = "title";
     protected static final String KEY_FLAG = "flag";
     
-    /** Other columns for People table **/
+    /** Other columns for Countries table **/
     protected static final String KEY_NAME = "name";
     protected static final String KEY_DESCRIPTION = "description";
     protected static final String KEY_COUNTRY_ID = "country_id";
@@ -69,7 +73,10 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /***** REMOVE DATABASE *******/
+    /**
+     * Removes Database file
+     * @param context
+     */
     public static void deleteDatabase(Context context) {
         context.deleteDatabase(DATABASE_NAME);
     }

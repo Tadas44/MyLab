@@ -1,0 +1,9 @@
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:includeInGlobalSearch="true"
+    android:label="@string/app_name"
+    android:searchSettingsDescription="People (Lab4)"
+    android:searchSuggestAuthority="lt.appcamp.lab.mylab4"
+    android:searchSuggestIntentData="content://lt.appcamp.lab.mylab4/people"
+    android:searchSuggestThreshold="2" >
+
+</searchable>

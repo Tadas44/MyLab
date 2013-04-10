@@ -11,7 +11,12 @@ import android.provider.BaseColumns;
 import android.util.Log;
 
 /**
+ * 
+ * MyDatabase class
+ * 
  * @author Tadas Valaitis
+ * 
+ * 
  * @see http://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html
  * @see http://developer.android.com/training/basics/data-storage/databases.html
  */

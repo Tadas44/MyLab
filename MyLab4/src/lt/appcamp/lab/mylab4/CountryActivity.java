@@ -18,6 +18,18 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+/**
+ * 
+ * CountryActivity. Uses SearchView for search implementation. Uses
+ * ContentResolver for CountryCursorAdapter
+ * 
+ * @see http://developer.android.com/guide/topics/search/index.html
+ * @see http://developer.android.com/training/search/index.html
+ * 
+ * 
+ * @author Tadas Valaitis
+ * 
+ */
 public class CountryActivity extends Activity {
 
 	private long countryId;
@@ -31,6 +43,9 @@ public class CountryActivity extends Activity {
 		// get country id from Intent
 		countryId = getIntent().getLongExtra("id", 0);
 
+		// setup search
+		setupSearch();
+
 		// get Cursor From ContentResolver
 		ContentResolver cr = getContentResolver();
 
@@ -43,7 +58,7 @@ public class CountryActivity extends Activity {
 		Cursor cursor = cr.query(uri, null, null, null, null);
 
 		// Cursor Adapter
-		CountryCursorAdapter adapter = new CountryCursorAdapter(
+		PeopleCursorAdapter adapter = new PeopleCursorAdapter(
 				CountryActivity.this, cursor, false);
 
 		// get List View
@@ -68,9 +83,25 @@ public class CountryActivity extends Activity {
 		});
 	}
 
-	public class CountryCursorAdapter extends CursorAdapter {
+	/**
+	 * Setup SearchView
+	 */
+	private void setupSearch() {
 
-		public CountryCursorAdapter(Context context, Cursor c,
+		// Use the Search Manager to find the SearchableInfo related to this
+		// Activity.
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		SearchableInfo searchableInfo = searchManager
+				.getSearchableInfo(getComponentName());
+
+		// Bind the Activity's SearchableInfo to the Search View
+		SearchView searchView = (SearchView) findViewById(R.id.searchView);
+		searchView.setSearchableInfo(searchableInfo);
+	}
+
+	public class PeopleCursorAdapter extends CursorAdapter {
+
+		public PeopleCursorAdapter(Context context, Cursor c,
 				boolean autoRequery) {
 			super(context, c, autoRequery);
 			// TODO Auto-generated constructor stub
@@ -96,7 +127,7 @@ public class CountryActivity extends Activity {
 		public View newView(Context context, Cursor cursor, ViewGroup vg) {
 			// TODO Auto-generated method stub
 			return View.inflate(context,
-					R.layout.view_country_cursor_list_item, null);
+					R.layout.view_people_cursor_list_item, null);
 		}
 
 	}
