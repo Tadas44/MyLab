@@ -9,3 +9,4 @@ MyLab3 - Handling Configuration Changes
 MyLab4 - Layouts, Views and Adapters
 ------------------------------------
 MyLab5 - Database, ContentProvider
+----------------------------------
