@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.labs.mylab7"
+    package="lt.appcamp.lab.mylab06"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -8,32 +8,25 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="lt.appcamp.labs.mylab7.MainActivity"
-            android:label="@string/app_name" >
+            android:name="lt.appcamp.lab.mylab06.LoaderActivity"
+            android:label="@string/app_name"
+            android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="lt.appcamp.labs.mylab7.FlexibleStaticUiActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="lt.appcamp.labs.mylab7.FlexibleUiActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="lt.appcamp.labs.mylab7.ViewPagerActivity"
-            android:label="@string/app_name" >
-        </activity>
+        <activity android:name=".ResultActivity" />
     </application>
 
 </manifest>
