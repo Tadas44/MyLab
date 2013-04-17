@@ -20,6 +20,6 @@ public class FlexibleStaticUiActivity extends FragmentActivity {
 	protected void onCreate(Bundle bundle) {
 		// TODO Auto-generated method stub
 		super.onCreate(bundle);
-		setContentView(R.layout.activity_flexible_ui);
+		setContentView(R.layout.activity_flexible_static_ui);
 	}
 }
