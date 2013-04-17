@@ -10,3 +10,7 @@ MyLab4 - Layouts, Views and Adapters
 ------------------------------------
 MyLab5 - Database, ContentProvider
 ----------------------------------
+MyLab6 - Http Client, Async Task
+--------------------------------
+MyLab7 - Fragments
+------------------
