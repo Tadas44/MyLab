@@ -17,19 +17,20 @@ import com.example.labs.mylab7.R;
  * 
  * Different layouts, master->detail view, in one activity
  * 
- * @see http://developer.android.com/training/basics/fragments/communicating.html
+ * @see http
+ *      ://developer.android.com/training/basics/fragments/communicating.html
  * 
  * @author Tadas Valaitis
- *
+ * 
  */
 public class FlexibleUiActivity extends FragmentActivity implements
 		OnSwitchButtonClickListener {
 
 	private static final String TAG = "FlexibleUiActivity";
-	
+
 	/** orientation flag **/
 	private static boolean isLandscape = false;
-	
+
 	/** fragment manager **/
 	private FragmentManager fragmentManager;
 
@@ -43,7 +44,7 @@ public class FlexibleUiActivity extends FragmentActivity implements
 
 		// FragmentManager
 		fragmentManager = getSupportFragmentManager();
-		
+
 		// FragmentTransaction
 		FragmentTransaction fragmentTransaction = fragmentManager
 				.beginTransaction();
@@ -70,6 +71,13 @@ public class FlexibleUiActivity extends FragmentActivity implements
 				fragmentTransaction.remove(switchFragment);
 			}
 
+			// find fragment if it's already added and remove it
+			colorFragment = (ColorFragment) fragmentManager
+					.findFragmentByTag(ColorFragment.TAG);
+			if (colorFragment != null) {
+				fragmentTransaction.remove(colorFragment);
+			}
+
 			// create new fragments
 			colorFragment = new ColorFragment();
 			switchFragment = new SwitchFragment();
@@ -78,7 +86,8 @@ public class FlexibleUiActivity extends FragmentActivity implements
 			fragmentTransaction.add(R.id.content_fragment_switch,
 					switchFragment, SwitchFragment.TAG);
 			fragmentTransaction.add(R.id.content_fragment_color, colorFragment,
-					colorFragment.TAG);
+					ColorFragment.TAG);
+
 		} else {
 
 			// --- portrait mode --
@@ -106,12 +115,31 @@ public class FlexibleUiActivity extends FragmentActivity implements
 
 			// android.R.id.content refers to the content
 			// view of the activity
-			fragmentTransaction.replace(android.R.id.content, switchFragment,
-					switchFragment.TAG);
+			fragmentTransaction.add(android.R.id.content, switchFragment,
+					SwitchFragment.TAG);
+
 		}
 
 		// commit transactions
 		fragmentTransaction.commit();
+
+	}
+
+	@Override
+	public void onBackPressed() {
+
+		Log.d(TAG,
+				"BackStack size before Back ["
+						+ fragmentManager.getBackStackEntryCount() + "]");
+
+		// if landscape popup fragments from backstack - default back button
+		// behaviour
+		if (isLandscape) {
+			super.onBackPressed();
+		} else {
+			finish();
+		}
+
 	}
 
 	/**
@@ -133,25 +161,25 @@ public class FlexibleUiActivity extends FragmentActivity implements
 		if (isLandscape) {
 			// if Landscape
 
-			//replace existing fragment with this
+			// replace existing fragment with this
 			fragmentTransaction.replace(R.id.content_fragment_color,
-					colorFragment, colorFragment.TAG);
+					colorFragment, ColorFragment.TAG);
+
+			// addToBackStack so we can use backButton to go to previous
+			// Try comment this to see how back button behaves
+			fragmentTransaction.addToBackStack(null);
 
 		} else {
 			// if Portrait
 
-			// android.R.id.content refers to the content
-			// view of the activity
+			// android.R.id.content refers to the content view of the activity
 			fragmentTransaction.replace(android.R.id.content, colorFragment,
-					colorFragment.TAG);
+					ColorFragment.TAG);
 
 		}
 
-		// addToBackStack
-		// Try comment this to see how back button behaves
-		fragmentTransaction.addToBackStack(null);
-
 		// comit
 		fragmentTransaction.commit();
+
 	}
 }
