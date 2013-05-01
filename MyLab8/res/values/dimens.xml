@@ -1,0 +1,5 @@
+<resources>
+
+   <dimen name="notepad_margin">30dp</dimen>
+
+</resources>
