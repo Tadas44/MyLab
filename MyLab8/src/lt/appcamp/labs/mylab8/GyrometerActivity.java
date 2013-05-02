@@ -22,11 +22,15 @@ public class GyrometerActivity extends Activity {
 		final GyrometerView gyrometer = (GyrometerView) findViewById(R.id.gyrometerView);
 		final SeekBar seekBarBearing = (SeekBar) findViewById(R.id.seekBar_bearing);
 		final SeekBar seekBarPitch = (SeekBar) findViewById(R.id.seekBar_pitch);
+		final SeekBar seekBarRoll = (SeekBar) findViewById(R.id.seekBar_roll);
 		final TextView bearingText = (TextView) findViewById(R.id.textView_bearing);
 		final TextView pitchText = (TextView) findViewById(R.id.textView_pitch);
+		final TextView rollText = (TextView) findViewById(R.id.textView_roll);
 
 		//set initial pitch to zero
 		seekBarPitch.setProgress(90);
+		//set initial roll to zero
+		seekBarRoll.setProgress(90);
 
 		seekBarBearing
 				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -62,16 +66,37 @@ public class GyrometerActivity extends Activity {
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 				
-				float pitch = seekBarToPitch(progress);
-				pitchText.setText("Gyrometer pitch: " + pitch);
-				gyrometer.setPitch(pitch);
+				float value = seekBarToGyrometer(progress);
+				pitchText.setText("Gyrometer pitch: " + value);
+				gyrometer.setPitch(value);
+				gyrometer.invalidate();
+			}
+		});
+		
+		seekBarRoll.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+			}
+
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress,
+					boolean fromUser) {
+				
+				float value = seekBarToGyrometer(progress);
+				rollText.setText("Gyrometer roll: " + value);
+				gyrometer.setRoll(value);
 				gyrometer.invalidate();
 			}
 		});
 
 	}
 
-	public float seekBarToPitch(int progress) {
+	public float seekBarToGyrometer(int progress) {
 		return (float) progress - 90;
 	}
 }

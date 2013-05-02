@@ -5,14 +5,15 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 
 /**
  * 
  * @author Meier R.,Tadas Valaitis
- *
- *
+ * 
+ * 
  * @see http://developer.android.com/training/custom-views/index.html
  * @see http://developer.android.com/guide/topics/ui/custom-components.html
  * @see http://developer.android.com/guide/topics/graphics/2d-graphics.html
@@ -22,11 +23,17 @@ import android.view.accessibility.AccessibilityEvent;
  */
 public class CompassView extends View {
 
+	private static final String TAG = "CompassView";
 	private float bearing;
 
+	/**
+	 * Set Commpass bearing in deegrees
+	 * 
+	 * @param _bearing
+	 *            0 - 360
+	 */
 	public void setBearing(float _bearing) {
 		bearing = _bearing;
-		sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED);
 	}
 
 	public float getBearing() {
@@ -75,6 +82,7 @@ public class CompassView extends View {
 		textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		textPaint.setColor(r.getColor(R.color.text_color));
 
+		// measure textHeight
 		textHeight = (int) textPaint.measureText("yY");
 
 		markerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -117,9 +125,13 @@ public class CompassView extends View {
 		int mMeasuredWidth = getMeasuredWidth();
 		int mMeasuredHeight = getMeasuredHeight();
 
+		// circle center coordinates
 		int px = mMeasuredWidth / 2;
 		int py = mMeasuredHeight / 2;
-
+		
+		//debug
+		Log.d(TAG,"Center points px="+px+", py="+py);
+		
 		int radius = Math.min(px, py);
 
 		// Draw the background
@@ -130,14 +142,22 @@ public class CompassView extends View {
 		canvas.save();
 		canvas.rotate(-bearing, px, py);
 
+		// measure text height
 		int textWidth = (int) textPaint.measureText("W");
+
 		int cardinalX = px - textWidth / 2;
 		int cardinalY = py - radius + textHeight;
 
 		// Draw the marker every 15 degrees and text every 45.
+		// 24 markers at all
 		for (int i = 0; i < 24; i++) {
 			// Draw a marker.
 			canvas.drawLine(px, py - radius, px, py - radius + 10, markerPaint);
+
+			// for debug
+			Log.d(TAG, "Draw marker[" + i + "] line  startX=" + px
+					+ ", startY=" + (py - radius) + ", stopX=" + px + " stopY="
+					+ (py - radius + 10));
 
 			canvas.save();
 			canvas.translate(0, textHeight);
@@ -149,10 +169,12 @@ public class CompassView extends View {
 				case (0): {
 					dirString = northString;
 					int arrowY = 2 * textHeight;
+					//draw arrow pointer to N
 					canvas.drawLine(px, arrowY, px - 5, 3 * textHeight,
 							markerPaint);
 					canvas.drawLine(px, arrowY, px + 5, 3 * textHeight,
 							markerPaint);
+					
 					break;
 				}
 				case (6):
@@ -165,7 +187,10 @@ public class CompassView extends View {
 					dirString = westString;
 					break;
 				}
+				
+				//draw text N,E,W etc.
 				canvas.drawText(dirString, cardinalX, cardinalY, textPaint);
+				Log.d(TAG,"DrawText text="+dirString+", x="+cardinalX+", y="+cardinalY);
 			}
 
 			else if (i % 3 == 0) {
@@ -176,27 +201,18 @@ public class CompassView extends View {
 				int angleTextX = (int) (px - angleTextWidth / 2);
 				int angleTextY = py - radius + textHeight;
 				canvas.drawText(angle, angleTextX, angleTextY, textPaint);
+				
+				//debug
+				Log.d(TAG,"DrawAngleText text="+angle+", x="+angleTextX+", y="+angleTextY);
 			}
+			//restore matrix
 			canvas.restore();
 
+			//rotate canvas 15 degrees
 			canvas.rotate(15, px, py);
 		}
 		canvas.restore();
 	}
 
-	@Override
-	public boolean dispatchPopulateAccessibilityEvent(
-			final AccessibilityEvent event) {
-		super.dispatchPopulateAccessibilityEvent(event);
-		if (isShown()) {
-			String bearingStr = String.valueOf(bearing);
-			if (bearingStr.length() > AccessibilityEvent.MAX_TEXT_LENGTH)
-				bearingStr = bearingStr.substring(0,
-						AccessibilityEvent.MAX_TEXT_LENGTH);
 
-			event.getText().add(bearingStr);
-			return true;
-		} else
-			return false;
-	}
 }

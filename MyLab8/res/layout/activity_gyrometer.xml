@@ -14,7 +14,6 @@
         android:id="@+id/textView_bearing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
         android:text="Gyrometer Bearing:" />
 
     <SeekBar
@@ -27,11 +26,22 @@
         android:id="@+id/textView_pitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
         android:text="Gyrometer Pitch:" />
 
     <SeekBar
         android:id="@+id/seekBar_pitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="180" />
+
+    <TextView
+        android:id="@+id/textView_roll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gyrometer Roll:" />
+
+    <SeekBar
+        android:id="@+id/seekBar_roll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="180" />
