@@ -6,6 +6,11 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+/**
+ * 
+ * @author Tadas Valaitis
+ *
+ */
 public class CompassActivity extends Activity {
 
 	@Override

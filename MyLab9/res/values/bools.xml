@@ -1,0 +1,5 @@
+<resources>
+
+    <item name="show_widget" type="bool">false</item>
+
+</resources>

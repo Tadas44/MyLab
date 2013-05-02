@@ -12,6 +12,13 @@ import android.view.accessibility.AccessibilityEvent;
  * 
  * @author Meier R.,Tadas Valaitis
  *
+ *
+ * @see http://developer.android.com/training/custom-views/index.html
+ * @see http://developer.android.com/guide/topics/ui/custom-components.html
+ * @see http://developer.android.com/guide/topics/graphics/2d-graphics.html
+ * 
+ * @see http://developer.android.com/reference/android/graphics/Paint.html
+ * @see http://developer.android.com/reference/android/view/View.html
  */
 public class CompassView extends View {
 

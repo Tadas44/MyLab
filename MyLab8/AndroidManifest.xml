@@ -30,6 +30,10 @@
             android:name="lt.appcamp.labs.mylab8.GyrometerActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="lt.appcamp.labs.mylab8.CheckListActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

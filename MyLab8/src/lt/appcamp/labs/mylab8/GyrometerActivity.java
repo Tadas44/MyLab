@@ -6,6 +6,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
+/**
+ * 
+ * @author Tadas Valaitis
+ *
+ */
 public class GyrometerActivity extends Activity {
 
 	@Override
@@ -14,7 +19,7 @@ public class GyrometerActivity extends Activity {
 
 		setContentView(R.layout.activity_gyrometer);
 
-		final CompassGyrometerView gyrometer = (CompassGyrometerView) findViewById(R.id.gyrometerView);
+		final GyrometerView gyrometer = (GyrometerView) findViewById(R.id.gyrometerView);
 		final SeekBar seekBarBearing = (SeekBar) findViewById(R.id.seekBar_bearing);
 		final SeekBar seekBarPitch = (SeekBar) findViewById(R.id.seekBar_pitch);
 		final TextView bearingText = (TextView) findViewById(R.id.textView_bearing);

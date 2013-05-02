@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp" >
 
-    <lt.appcamp.labs.mylab8.CompassGyrometerView
+    <lt.appcamp.labs.mylab8.GyrometerView
         android:id="@+id/gyrometerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
