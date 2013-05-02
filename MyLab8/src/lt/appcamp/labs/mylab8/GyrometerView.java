@@ -18,7 +18,6 @@ import android.graphics.Shader.TileMode;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
 
 /**
  * 
@@ -192,7 +191,7 @@ public class GyrometerView extends View {
 		if (specMode == MeasureSpec.UNSPECIFIED) {
 			// Return a default size of 200 if no bounds are specified.
 			result = 200;
-			Log.d("Gyrometer","default measure");
+			Log.d("Gyrometer", "default measure");
 		} else {
 			// As you want to fill the available space
 			// always return the full available bounds.
@@ -387,19 +386,4 @@ public class GyrometerView extends View {
 		canvas.drawOval(innerBoundingBox, circlePaint);
 	}
 
-	@Override
-	public boolean dispatchPopulateAccessibilityEvent(
-			final AccessibilityEvent event) {
-		super.dispatchPopulateAccessibilityEvent(event);
-		if (isShown()) {
-			String bearingStr = String.valueOf(bearing);
-			if (bearingStr.length() > AccessibilityEvent.MAX_TEXT_LENGTH)
-				bearingStr = bearingStr.substring(0,
-						AccessibilityEvent.MAX_TEXT_LENGTH);
-
-			event.getText().add(bearingStr);
-			return true;
-		} else
-			return false;
-	}
 }
