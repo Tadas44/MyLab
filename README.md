@@ -14,3 +14,7 @@ MyLab6 - Http Client, Async Task
 --------------------------------
 MyLab7 - Fragments
 ------------------
+MyLab8 - Custom Views
+---------------------
+MyLab9 - App Widget
+-------------------
